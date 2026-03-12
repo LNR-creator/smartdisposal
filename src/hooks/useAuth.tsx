@@ -5,7 +5,7 @@ import { UserProfile } from "@/data/types";
 interface AuthContextType {
   user: UserProfile | null;
   isAdmin: boolean;
-  login: (email: string, password: string) => void;
+  login: (email: string, password: string, name?: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
 }
