@@ -5,7 +5,7 @@ import { UserProfile } from "@/data/types";
 interface AuthContextType {
   user: UserProfile | null;
   isAdmin: boolean;
-  login: (email: string, password: string) => void;
+  login: (email: string, password: string, name?: string) => void;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -16,12 +16,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const login = (email: string, _password: string) => {
+  const login = (email: string, _password: string, name?: string) => {
     if (email === "admin@smartdisposal.com") {
-      setUser({ ...mockUser, name: "Admin User", email });
+      setUser({ ...mockUser, name: name || "Admin User", email });
       setIsAdmin(true);
     } else {
-      setUser({ ...mockUser, email });
+      setUser({ ...mockUser, name: name || email.split("@")[0], email });
       setIsAdmin(false);
     }
   };

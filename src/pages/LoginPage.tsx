@@ -26,7 +26,7 @@ const LoginPage = () => {
       toast.error("Password must be at least 6 characters");
       return;
     }
-    login(email, password);
+    login(email, password, name || undefined);
     toast.success(isRegister ? "Account created!" : "Welcome back!");
     navigate("/dashboard");
   };
